@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BackEnd\AdminBundle\Entity\MatchItems" table="match_items">
+    <indexes>
+      <index name="FK_REFERENCE_10" columns="id_item"/>
+    </indexes>
+    <id name="idMatch" type="integer" column="id_match">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="statusMatchItem" type="string" column="status_match_item" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="amountToPaied" type="float" column="amount_to_paied" precision="10" scale="0" nullable="true"/>
+    <field name="transactionStatus" type="string" column="transaction_status" length="15" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idItem" target-entity="Item" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_item" referenced-column-name="id_item"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

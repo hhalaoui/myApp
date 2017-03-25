@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BackEnd\AdminBundle\Entity\TypeCompany" table="type_company">
+    <indexes>
+      <index name="FK_REFERENCE_7" columns="id_company"/>
+    </indexes>
+    <id name="idTypeCompany" type="integer" column="id_type_company">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="typeCompany" type="string" column="type_company" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idCompany" target-entity="Company" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_company" referenced-column-name="id_company"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

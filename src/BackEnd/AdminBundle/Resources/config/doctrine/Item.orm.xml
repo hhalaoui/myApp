@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BackEnd\AdminBundle\Entity\Item" table="item">
+    <indexes>
+      <index name="FK_REFERENCE_12" columns="id_user"/>
+      <index name="FK_REFERENCE_6" columns="id_location_type"/>
+      <index name="FK_REFERENCE_9" columns="id_categroy"/>
+    </indexes>
+    <id name="idItem" type="integer" column="id_item">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="reward" type="float" column="reward" precision="10" scale="0" nullable="true"/>
+    <field name="picture" type="string" column="picture" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="location" type="string" column="location" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="statusItem" type="string" column="status_item" length="30" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="longitude" type="decimal" column="longitude" precision="10" scale="0" nullable="true"/>
+    <field name="latitude" type="decimal" column="latitude" precision="10" scale="0" nullable="true"/>
+    <field name="city" type="string" column="city" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="country" type="string" column="country" length="60" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="creationDate" type="datetime" column="creation_date" nullable="true"/>
+    <field name="foundItem" type="boolean" column="found_item" nullable="true"/>
+    <field name="lostItem" type="boolean" column="lost_item" nullable="true"/>
+    <field name="dateOfLost" type="datetime" column="date_of_lost" nullable="true"/>
+    <field name="dateOfFound" type="datetime" column="date_of_found" nullable="true"/>
+    <many-to-one field="idCategroy" target-entity="MainCategoryItem" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_categroy" referenced-column-name="id_categroy"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idLocationType" target-entity="LocationType" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_location_type" referenced-column-name="id_location_type"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUser" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_user" referenced-column-name="id_user"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

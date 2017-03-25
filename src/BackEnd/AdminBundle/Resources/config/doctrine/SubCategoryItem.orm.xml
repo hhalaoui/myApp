@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BackEnd\AdminBundle\Entity\SubCategoryItem" table="sub_category_item">
+    <indexes>
+      <index name="FK_REFERENCE_8" columns="id_categroy"/>
+    </indexes>
+    <id name="idSubCategory" type="integer" column="id_sub_category">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idCategroy" target-entity="MainCategoryItem" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_categroy" referenced-column-name="id_categroy"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
